@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "774804092780",
+    "project_id": "alquilafacil-auth",
+    "storage_bucket": "alquilafacil-auth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774804092780:android:0c2261235664646704a549",
+        "android_client_info": {
+          "package_name": "com.example.alquilafacil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774804092780-5ubvk0jrnf4h69um3o584j5m553utppk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alquilafacil",
+            "certificate_hash": "ead3d76d81455301daf6686f4b58488d74f3a884"
+          }
+        },
+        {
+          "client_id": "774804092780-nl1abgmo7uqnjan4iu5jakc4ldaik0al.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpjAQvEtoOPpM6__lMIVuiNz5hfWraV-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774804092780-nl1abgmo7uqnjan4iu5jakc4ldaik0al.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "774804092780-oqok45ndtgnp2m47uku7gefk3m38l708.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.alquilafacil"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
