@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "authorId": 1,
+    "spaceId": 1,
+    "text": "Excelente espacio, muy cómodo y bien ubicado.",
+    "rating": 4.5
+  },
+  {
+    "id": 2,
+    "authorId": 2,
+    "spaceId": 1,
+    "text": "Buen servicio, pero el espacio podría estar mejor organizado.",
+    "rating": 3.8
+  },
+  {
+    "id": 3,
+    "authorId": 3,
+    "spaceId": 2,
+    "text": "Perfecto para reuniones pequeñas, volveré sin duda.",
+    "rating": 5.0
+  },
+  {
+    "id": 4,
+    "authorId": 4,
+    "spaceId": 2,
+    "text": "El ambiente era muy ruidoso, no recomendable para presentaciones.",
+    "rating": 2.5
+  },
+  {
+    "id": 5,
+    "authorId": 5,
+    "spaceId": 3,
+    "text": "Buena ubicación y servicios, pero el precio es algo elevado.",
+    "rating": 4.0
+  },
+  {
+    "id": 6,
+    "authorId": 1,
+    "spaceId": 3,
+    "text": "El lugar es muy limpio y tiene todo lo necesario para trabajar.",
+    "rating": 4.7
+  },
+  {
+    "id": 7,
+    "authorId": 2,
+    "spaceId": 1,
+    "text": "El Wi-Fi era lento, lo cual afectó nuestra reunión.",
+    "rating": 3.0
+  },
+  {
+    "id": 8,
+    "authorId": 3,
+    "spaceId": 2,
+    "text": "Muy buen espacio, pero falta mejorar la atención al cliente.",
+    "rating": 4.2
+  },
+  {
+    "id": 9,
+    "authorId": 4,
+    "spaceId": 2,
+    "text": "El equipo de sonido falló durante nuestra presentación.",
+    "rating": 2.8
+  },
+  {
+    "id": 10,
+    "authorId": 5,
+    "spaceId": 3,
+    "text": "Espacio muy amplio y bien ventilado, perfecto para eventos grandes.",
+    "rating": 4.6
+  }
+]

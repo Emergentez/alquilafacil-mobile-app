@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Juan Pérez",
+    "email": "juan.perez@example.com",
+    "phoneNumber": "+51 987 654 321"
+  },
+  {
+    "id": 2,
+    "name": "María Gómez",
+    "email": "maria.gomez@example.com",
+    "phoneNumber": "+51 123 456 789"
+  },
+  {
+    "id": 3,
+    "name": "Carlos Rodríguez",
+    "email": "carlos.rodriguez@example.com",
+    "phoneNumber": "+51 987 123 456"
+  },
+  {
+    "id": 4,
+    "name": "Lucía Fernández",
+    "email": "lucia.fernandez@example.com",
+    "phoneNumber": "+51 321 654 987"
+  },
+  {
+    "id": 5,
+    "name": "Pedro Castillo",
+    "email": "pedro.castillo@example.com",
+    "phoneNumber": "+51 654 987 321"
+  }
+]

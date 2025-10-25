@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Espacio Coworking A",
+    "location": "Av. Larco 123, Lima",
+    "capacity": 50,
+    "ownerId": 1,
+    "description": "Un espacio moderno y cómodo para reuniones.",
+    "price": 75.0
+  },
+  {
+    "id": 2,
+    "name": "Espacio Coworking B",
+    "location": "Jr. Pardo 456, Cusco",
+    "capacity": 40,
+    "ownerId": 2,
+    "description": "Ideal para trabajo en equipo en un ambiente tranquilo.",
+    "price": 60.0
+  },
+  {
+    "id": 3,
+    "name": "Sala de Conferencias C",
+    "location": "Calle Grau 789, Arequipa",
+    "capacity": 150,
+    "ownerId": 3,
+    "description": "Sala equipada con tecnología de última generación.",
+    "price": 200.0
+  },
+  {
+    "id": 4,
+    "name": "Estudio de Grabación D",
+    "location": "Av. Brasil 1010, Trujillo",
+    "capacity": 5,
+    "ownerId": 4,
+    "description": "Perfecto para grabaciones de audio y video.",
+    "price": 150.0
+  },
+  {
+    "id": 5,
+    "name": "Oficina Privada E",
+    "location": "Av. Javier Prado 2020, Lima",
+    "capacity": 10,
+    "ownerId": 5,
+    "description": "Oficina privada con todas las comodidades.",
+    "price": 120.0
+  }
+]
