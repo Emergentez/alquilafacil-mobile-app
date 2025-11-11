@@ -105,7 +105,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       daysOfWeekHeight: 40.0,
                       focusedDay: _focusedDay,
                       firstDay: DateTime.utc(2024, 09, 01),
-                      lastDay: DateTime.utc(2025, 09, 30),
+                      lastDay: DateTime.utc(2026, 12, 31),
                       calendarBuilders: CalendarBuilders(
                         defaultBuilder: (context, day, focusedDay) {
                           return DefaultCalendarDay(day: day);
