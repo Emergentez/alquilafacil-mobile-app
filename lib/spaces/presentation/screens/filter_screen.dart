@@ -5,6 +5,7 @@ import 'package:alquilafacil/spaces/presentation/providers/space_provider.dart';
 import 'package:alquilafacil/spaces/presentation/widgets/capacity_filters.dart';
 import 'package:alquilafacil/spaces/presentation/widgets/local_category_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class FilterScreen extends StatefulWidget {
 class _FilterScreenState extends State<FilterScreen>{
   int? selectedIndex;
 
-  Future<void> _showDialog(String dialogTitle, String route) async {
+  Future<void> _showDialog(String dialogTitle, String route, AppLocalizations l10n) async {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -40,14 +41,14 @@ class _FilterScreenState extends State<FilterScreen>{
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0),
                   child: TextButton(
-                    child: const Text('Confirmar'),
+                    child: Text(l10n.confirm),
                     onPressed: () {
                       Navigator.pushNamed(context, route);
                     },
                   ),
                 ),
                 TextButton(
-                  child: const Text('Cancelar'),
+                  child: Text(l10n.cancel),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -73,13 +74,14 @@ class _FilterScreenState extends State<FilterScreen>{
     final themeProvider = Provider.of<ThemeProvider>(context);
     final localCategoriesProvider = context.watch<LocalCategoriesProvider>();
     final spaceProvider = context.watch<SpaceProvider>();
+    final l10n = AppLocalizations.of(context)!;
     final ranges = ["5-10","11-25","26-50","51-150", "151-300"];
     return Scaffold(
       backgroundColor: MainTheme.background(context),
       appBar: AppBar(
         backgroundColor: themeProvider.isDarkTheme ? MainTheme.primary(context) : MainTheme.background(context),
         title: Text(
-          "Filtros",
+          l10n.filters,
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -96,7 +98,7 @@ class _FilterScreenState extends State<FilterScreen>{
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
-                     "Tipos de espacio:",
+                     l10n.spaceTypes,
                      style: TextStyle(
                        color: MainTheme.contrast(context),
                        fontSize: 20.0,
@@ -131,7 +133,7 @@ class _FilterScreenState extends State<FilterScreen>{
                  Padding(
                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                    child: Text(
-                     "Capacidad de personas:",
+                     l10n.peopleCapacity,
                      style: TextStyle(
                          color: MainTheme.contrast(context),
                          fontSize: 20.0,
@@ -164,10 +166,10 @@ class _FilterScreenState extends State<FilterScreen>{
                            );
                          }
                          else{
-                              await _showDialog("Por favor, seleccione los parámetros de búsqueda", "/filter-screen");
+                              await _showDialog(l10n.selectSearchParams, "/filter-screen", l10n);
                            }
                          },
-                           child: const Text("Buscar espacio ", textAlign: TextAlign.center,)
+                           child: Text(l10n.searchSpace, textAlign: TextAlign.center,)
                        ),
                      ),
                  ),

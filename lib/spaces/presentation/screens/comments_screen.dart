@@ -6,8 +6,9 @@ import 'package:alquilafacil/spaces/data/remote/helpers/comment_service_helper.d
 import 'package:alquilafacil/spaces/domain/model/comment.dart';
 import 'package:alquilafacil/spaces/presentation/providers/comment_provider.dart';
 import 'package:alquilafacil/spaces/presentation/providers/space_provider.dart';
-import 'package:alquilafacil/spaces/presentation/widgets/space_comment.dart'; // Asegúrate de que esto esté bien importado
+import 'package:alquilafacil/spaces/presentation/widgets/space_comment.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
@@ -57,9 +58,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
   Widget build(BuildContext context) {
     final commentProvider = context.watch<CommentProvider>();
     final profileProvider = context.watch<ProfileProvider>();
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Comentarios'),
+        title: Text(l10n.comments),
         leading: Container(
           margin: const EdgeInsets.symmetric(horizontal: 10.0),
           decoration: const BoxDecoration(

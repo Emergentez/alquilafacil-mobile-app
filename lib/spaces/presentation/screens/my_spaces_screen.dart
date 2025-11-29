@@ -3,6 +3,7 @@ import 'package:alquilafacil/auth/presentation/screens/login.dart';
 import 'package:alquilafacil/spaces/presentation/providers/space_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../public/presentation/widgets/screen_bottom_app_bar.dart';
@@ -30,6 +31,7 @@ class _MySpacesScreenState extends State<MySpacesScreen> {
   @override
   Widget build(BuildContext context) {
     final spaceProvider = context.watch<SpaceProvider>();
+    final l10n = AppLocalizations.of(context)!;
     return  Scaffold(
         backgroundColor: MainTheme.background(context),
         appBar: AppBar(
@@ -40,7 +42,7 @@ class _MySpacesScreenState extends State<MySpacesScreen> {
               Navigator.pop(context);
             },
           ),
-          title: Text("Mis espacios", style: TextStyle(color: Colors.white),),
+          title: Text(l10n.mySpaces, style: const TextStyle(color: Colors.white),),
         ),
         body: spaceProvider.currentSpaces.isNotEmpty ?
         Padding(
