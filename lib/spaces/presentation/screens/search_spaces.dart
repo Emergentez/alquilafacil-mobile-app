@@ -4,6 +4,7 @@ import 'package:alquilafacil/spaces/presentation/providers/space_provider.dart';
 import 'package:alquilafacil/spaces/presentation/widgets/card.dart';
 import 'package:alquilafacil/spaces/presentation/widgets/search_space_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../public/ui/providers/theme_provider.dart';
@@ -28,6 +29,7 @@ class _SearchSpaces extends State<SearchSpaces> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final spaceProvider = context.watch<SpaceProvider>();
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       bottomNavigationBar: const ScreenBottomAppBar(),
       backgroundColor: MainTheme.background(context),
@@ -58,7 +60,7 @@ class _SearchSpaces extends State<SearchSpaces> {
                         Icon(Icons.search_outlined, color: MainTheme.contrast(context)),
                         const SizedBox(width: 10),
                         Text(
-                          'Buscar espacio',
+                          l10n.searchSpaces,
                           style: TextStyle(color: MainTheme.contrast(context), fontSize: 16.0),
                         ),
                       ],

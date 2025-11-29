@@ -13,6 +13,7 @@ import 'package:alquilafacil/spaces/presentation/providers/space_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
@@ -110,14 +111,15 @@ class _SpaceInfoState extends State<SpaceInfo> {
     final profileProvider = context.watch<ProfileProvider>();
     final signInProvider = context.watch<SignInProvider>();
     final reservationProvider = context.watch<ReservationProvider>();
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
         backgroundColor: MainTheme.background(context),
         appBar: AppBar(
           backgroundColor: MainTheme.primary(context),
-          title: const Text(
-            "Información del espacio",
-            style: TextStyle(color: Colors.white, fontSize: 18),
+          title: Text(
+            l10n.spaceInfo,
+            style: const TextStyle(color: Colors.white, fontSize: 18),
           ),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -204,7 +206,7 @@ class _SpaceInfoState extends State<SpaceInfo> {
                     const SpaceInfoActions(),
                     const SizedBox(height: 20),
                     Text(
-                      "Horario de reserva:",
+                      l10n.reservationScheduleLabel,
                       style: TextStyle(
                           color: MainTheme.contrast(context),
                           fontWeight: FontWeight.bold,
@@ -225,7 +227,7 @@ class _SpaceInfoState extends State<SpaceInfo> {
                                 _startDateTime != null
                                     ? DateFormat('dd/MM/yyyy HH:mm').format(
                                     _startDateTime!)
-                                    : 'Fecha y hora de inicio',
+                                    : l10n.startDateTimeLabel,
                                 style: TextStyle(
                                     color: MainTheme.contrast(context),
                                     fontSize: 16),
@@ -250,7 +252,7 @@ class _SpaceInfoState extends State<SpaceInfo> {
                                 _endDateTime != null
                                     ? DateFormat('dd/MM/yyyy HH:mm').format(
                                     _endDateTime!)
-                                    : 'Fecha y hora de fin',
+                                    : l10n.endDateTimeLabel,
                                 style: TextStyle(
                                     color: MainTheme.contrast(context),
                                     fontSize: 16),
@@ -265,7 +267,7 @@ class _SpaceInfoState extends State<SpaceInfo> {
                     // Mostrar el precio a pagar
                     if (_totalPrice > 0)
                       Text(
-                        'Precio a pagar: S/.${_totalPrice.toStringAsFixed(2)}',
+                        '${l10n.priceToPay}: S/.${_totalPrice.toStringAsFixed(2)}',
                         style: TextStyle(
                             color: MainTheme.contrast(context),
                             fontWeight: FontWeight.bold,
@@ -301,9 +303,9 @@ class _SpaceInfoState extends State<SpaceInfo> {
                             Icon(Icons.add_a_photo_outlined,
                                 color: MainTheme.primary(context), size: 40),
                             const SizedBox(height: 8),
-                            const Text(
-                              'Subir voucher de pago',
-                              style: TextStyle(
+                            Text(
+                              l10n.uploadVoucher,
+                              style: const TextStyle(
                                   color: Colors.grey, fontSize: 16),
                             ),
                           ],
@@ -330,8 +332,8 @@ class _SpaceInfoState extends State<SpaceInfo> {
                             await showDialog(
                                 context: context,
                                 builder: (_) =>
-                                const CustomDialog(
-                                    title: "Por favor selecciona las fechas y horas de inicio y fin válidas",
+                                CustomDialog(
+                                    title: l10n.selectValidDates,
                                     route: "/space-info"));
                           }
                           try {
@@ -347,8 +349,8 @@ class _SpaceInfoState extends State<SpaceInfo> {
                             await showDialog(
                                 context: context,
                                 builder: (_) =>
-                                const CustomDialog(
-                                    title: "Reserva realizada con éxito",
+                                CustomDialog(
+                                    title: l10n.reservationSuccessful,
                                     route: "/search-space"));
                           } on DioException catch (e) {
                             Logger().e("Error while creating reservation: $e");
@@ -356,16 +358,15 @@ class _SpaceInfoState extends State<SpaceInfo> {
                               await showDialog(
                                   context: context,
                                   builder: (_) =>
-                                  const CustomDialog(
-                                      title: "No puedes reservar tu mismo espacio",
+                                  CustomDialog(
+                                      title: l10n.cannotReserveOwnSpace,
                                       route: "/search-space"));
                             } else {
                               await showDialog(
                                   context: context,
                                   builder: (_) =>
-                                  const CustomDialog(
-                                      title:
-                                      "Hubo un error al realizar la reserva, por favor revisa los datos proporcionados de tu cuenta",
+                                  CustomDialog(
+                                      title: l10n.reservationErrorCheck,
                                       route: "/search-space"));
                             }
                           }
@@ -379,7 +380,7 @@ class _SpaceInfoState extends State<SpaceInfo> {
                           backgroundColor: Colors.orangeAccent,
                           foregroundColor: Colors.white,
                         ),
-                        child: const Text('Reservar'),
+                        child: Text(l10n.reserve),
                       ),
                     ),
                   ],
@@ -391,7 +392,7 @@ class _SpaceInfoState extends State<SpaceInfo> {
             padding: const EdgeInsets.only(top: 50.0),
             child: Center(
               child: Text(
-                "No hay espacio seleccionado",
+                l10n.noSpaceSelected,
                 style: TextStyle(
                     color: MainTheme.contrast(context), fontSize: 20.0),
               ),

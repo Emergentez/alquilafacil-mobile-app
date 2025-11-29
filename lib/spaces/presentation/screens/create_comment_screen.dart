@@ -2,6 +2,7 @@ import 'package:alquilafacil/public/ui/theme/main_theme.dart';
 import 'package:alquilafacil/spaces/domain/model/comment.dart';
 import 'package:alquilafacil/spaces/presentation/providers/comment_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_rating/flutter_rating.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -37,12 +38,13 @@ class _CreateCommentScreenState extends State<CreateCommentScreen> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController commentController = TextEditingController();
+    final l10n = AppLocalizations.of(context)!;
     //Numero de estrellas
     int starCount = 5;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Comentarios'),
+        title: Text(l10n.comments),
         leading: Container(
           margin: const EdgeInsets.symmetric(horizontal: 10.0),
           decoration: const BoxDecoration(
@@ -65,7 +67,7 @@ class _CreateCommentScreenState extends State<CreateCommentScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Deja tu valoración: "),
+                Text(l10n.leaveRating),
                 StarRating(
                   color: MainTheme.secondary(context),
                   rating: rating,
@@ -89,7 +91,7 @@ class _CreateCommentScreenState extends State<CreateCommentScreen> {
                     color: MainTheme.primary(context)
                   )
                 ),
-                hintText: "Escribe aqui tu comentario...",
+                hintText: l10n.writeCommentHere,
                 border:const  OutlineInputBorder(
                 ),
               ),
@@ -121,7 +123,7 @@ class _CreateCommentScreenState extends State<CreateCommentScreen> {
                     provider.createComment(comment);
                     Navigator.pop(context);
                   },
-                  child: const Text('Publicar', style: TextStyle(color: Colors.white),),
+                  child: Text(l10n.publish, style: const TextStyle(color: Colors.white),),
                 ),
               ),
             ),

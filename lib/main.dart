@@ -44,9 +44,11 @@ import 'package:alquilafacil/subscriptions/data/remote/helpers/subscription_serv
 import 'package:alquilafacil/subscriptions/presentation/provider/plan_provider.dart';
 import 'package:alquilafacil/subscriptions/presentation/provider/subscription_provider.dart';
 import 'package:alquilafacil/subscriptions/presentation/screens/subscription_screen.dart';
+import 'package:alquilafacil/shared/providers/locale_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'auth/presentation/providers/SignInProvider.dart';
@@ -75,6 +77,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SignUpProvider(authServiceHelper)),
         ChangeNotifierProvider(create: (_) => ConditionTermsProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
         ChangeNotifierProxyProvider<SignInProvider,PlanProvider>(
           create: (_) => PlanProvider(PlanServiceHelper(SignInProvider(authServiceHelper))),
           update: (context, signInProvider, previous) =>
@@ -121,18 +124,20 @@ class MyApp extends StatelessWidget {
               CommentProvider(CommentServiceHelper(signInProvider)),
         ),
       ],
-      child: Consumer<ThemeProvider>(
-        builder: (context, themeProvider, child) {
+      child: Consumer2<ThemeProvider, LocaleProvider>(
+        builder: (context, themeProvider, localeProvider, child) {
           return MaterialApp(
             theme: themeProvider.currentTheme,
-            locale: const Locale('es', 'ES'),
+            locale: localeProvider.locale,
             localizationsDelegates: const [
+              AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: const [
               Locale('es', 'ES'),
+              Locale('en', 'US'),
             ],
             initialRoute: "/",
             routes: {

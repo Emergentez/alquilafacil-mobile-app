@@ -3,6 +3,7 @@ import 'package:alquilafacil/profile/presentation/providers/profile_provider.dar
 import 'package:alquilafacil/profile/presentation/widgets/profile_details_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
@@ -29,11 +30,12 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   @override
   Widget build(BuildContext context) {
     final profileProvider = context.watch<ProfileProvider>();
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: MainTheme.primary(context),
       appBar: AppBar(
         backgroundColor: MainTheme.background(context),
-        title:  Text("Mi perfil", style: TextStyle(color: MainTheme.contrast(context)),),
+        title: Text(l10n.myProfile, style: TextStyle(color: MainTheme.contrast(context)),),
       ),
       body: profileProvider.currentProfile != null ?  SingleChildScrollView(
           child:  ProfileDetailsInfo(

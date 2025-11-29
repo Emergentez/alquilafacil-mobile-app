@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   http: ^1.2.2
   provider: ^6.1.2
   flutter_paypal_payment: ^1.0.0
@@ -54,8 +56,6 @@ dependencies:
   webview_flutter: ^4.0.0
 
 dev_dependencies:
-  flutter_localizations:
-    sdk: flutter
   flutter_test:
     sdk: flutter
 
@@ -71,6 +71,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

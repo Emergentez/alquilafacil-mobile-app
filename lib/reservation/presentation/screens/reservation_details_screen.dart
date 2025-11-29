@@ -4,6 +4,7 @@ import 'package:alquilafacil/reservation/presentation/widgets/space_info_actions
 import 'package:alquilafacil/reservation/presentation/widgets/space_info_details.dart';
 import 'package:alquilafacil/spaces/presentation/providers/space_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -42,6 +43,7 @@ class _ReservationDetailsScreen extends State<ReservationDetailsScreen> {
   Widget build(BuildContext context) {
     final spaceProvider = context.watch<SpaceProvider>();
     final profileProvider = context.watch<ProfileProvider>();
+    final l10n = AppLocalizations.of(context)!;
     final now = DateTime.now();
     final isActive = now.isAfter(reservation.startDate) && now.isBefore(reservation.endDate);
 
@@ -49,9 +51,9 @@ class _ReservationDetailsScreen extends State<ReservationDetailsScreen> {
       backgroundColor: MainTheme.background(context),
       appBar: AppBar(
         backgroundColor: MainTheme.primary(context),
-        title: const Text(
-          "Información de la reserva",
-          style: TextStyle(color: Colors.white, fontSize: 18),
+        title: Text(
+          l10n.reservationInfo,
+          style: const TextStyle(color: Colors.white, fontSize: 18),
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -89,7 +91,7 @@ class _ReservationDetailsScreen extends State<ReservationDetailsScreen> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "Inicia el: ${DateFormat('dd/MM/yyyy').format(reservation.startDate)} a las ${DateFormat('HH:mm').format(reservation.startDate)}",
+                    "${l10n.startsOn}: ${DateFormat('dd/MM/yyyy').format(reservation.startDate)} ${l10n.atTime} ${DateFormat('HH:mm').format(reservation.startDate)}",
                     style: TextStyle(
                       color: MainTheme.contrast(context),
                       fontSize: 15,
@@ -97,7 +99,7 @@ class _ReservationDetailsScreen extends State<ReservationDetailsScreen> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "Termina el: ${DateFormat('dd/MM/yyyy').format(reservation.endDate)} a las ${DateFormat('HH:mm').format(reservation.endDate)}",
+                    "${l10n.endsOn}: ${DateFormat('dd/MM/yyyy').format(reservation.endDate)} ${l10n.atTime} ${DateFormat('HH:mm').format(reservation.endDate)}",
                     style: TextStyle(
                       color: MainTheme.contrast(context),
                       fontSize: 15,
@@ -109,8 +111,8 @@ class _ReservationDetailsScreen extends State<ReservationDetailsScreen> {
                       width: double.infinity,
                       height: 50,
                       child: TextButton(
-                        child: const Text(
-                          "Deja un comentario",
+                        child: Text(
+                          l10n.leaveComment,
                           textAlign: TextAlign.center,
                         ),
                         onPressed: () => Navigator.pushNamed(context, "/create-comments"),
@@ -125,10 +127,10 @@ class _ReservationDetailsScreen extends State<ReservationDetailsScreen> {
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all(MainTheme.secondary(context)),
                         ),
-                        child: const Text(
-                          "Monitorear estado del local ahora",
+                        child: Text(
+                          l10n.monitorNow,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
                           Navigator.pushNamed(
@@ -147,10 +149,10 @@ class _ReservationDetailsScreen extends State<ReservationDetailsScreen> {
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all(MainTheme.primary(context)),
                       ),
-                      child: const Text(
-                        "Reportar local",
+                      child: Text(
+                        l10n.reportLocal,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                       onPressed: () => Navigator.pushNamed(context, "/create-report"),
                     ),
@@ -164,7 +166,7 @@ class _ReservationDetailsScreen extends State<ReservationDetailsScreen> {
           padding: const EdgeInsets.only(top: 50.0),
           child: Center(
             child: Text(
-              "No hay espacio seleccionado",
+              l10n.noSpaceSelected,
               style: TextStyle(
                 color: MainTheme.contrast(context),
                 fontSize: 20.0,

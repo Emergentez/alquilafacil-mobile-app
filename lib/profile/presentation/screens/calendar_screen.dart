@@ -4,6 +4,7 @@ import 'package:alquilafacil/public/ui/theme/main_theme.dart';
 import 'package:alquilafacil/reservation/presentation/providers/reservation_provider.dart';
 import 'package:alquilafacil/spaces/presentation/providers/space_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -43,10 +44,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     final reservationProvider = context.watch<ReservationProvider>();
     final spaceProvider = context.watch<SpaceProvider>();
+    final l10n = AppLocalizations.of(context)!;
 
     if (_isLoading) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Calendario')),
+        appBar: AppBar(title: Text(l10n.calendar)),
         body: Center(child: CircularProgressIndicator(color: MainTheme.secondary(context))),
         bottomNavigationBar: const ScreenBottomAppBar(),
       );
@@ -54,7 +56,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calendario'),
+        title: Text(l10n.calendar),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -67,7 +69,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              "Toca en una fecha para ver más detalles sobre la programación",
+              l10n.tapDateForDetails,
               style: TextStyle(color: MainTheme.contrast(context), fontWeight: FontWeight.bold),
             ),
           ),
@@ -183,16 +185,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       ),
                     ),
                     const SizedBox(height: 16.0),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          EventTypeIndicator(color: Colors.red, text: "Reserva"),
-                          SizedBox(height: 16.0),
-                          EventTypeIndicator(color: Colors.blue, text: "Reserva de tu espacio"),
-                          SizedBox(height: 16.0),
-                          EventTypeIndicator(color: Colors.amberAccent, text: "Reserva de tu espacio por usuario premium"),
+                          EventTypeIndicator(color: Colors.red, text: l10n.reservationEvent),
+                          const SizedBox(height: 16.0),
+                          EventTypeIndicator(color: Colors.blue, text: l10n.spaceReservation),
+                          const SizedBox(height: 16.0),
+                          EventTypeIndicator(color: Colors.amberAccent, text: l10n.premiumSpaceReservation),
                         ],
                       ),
                     ),

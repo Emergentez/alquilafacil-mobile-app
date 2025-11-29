@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -29,14 +29,14 @@ class SupportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: MainTheme.background(context),
       appBar: AppBar(
         backgroundColor: themeProvider.isDarkTheme ? MainTheme.primary(context) : MainTheme.background(context),
         title: Text(
-          'Panel de control',
+          l10n.controlPanel,
           style: TextStyle(color: MainTheme.contrast(context)),
         ),
         leading: IconButton(
@@ -58,13 +58,13 @@ class SupportScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const NavigationRow(
-                    title: 'Preguntas frecuentes',
+                  NavigationRow(
+                    title: l10n.faqs,
                     routeName: '/faqs',
                   ),
                   const Divider(),
                   NavigationRow(
-                    title: 'Escribir a soporte',
+                    title: l10n.writeToSupport,
                     routeName: '/',
                     onTap: () async{
                         await launchWhatsApp();
