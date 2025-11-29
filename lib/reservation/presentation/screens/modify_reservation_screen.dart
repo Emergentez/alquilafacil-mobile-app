@@ -6,6 +6,7 @@ import 'package:alquilafacil/reservation/presentation/widgets/space_info_details
 import 'package:alquilafacil/spaces/presentation/providers/space_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -46,11 +47,12 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
     final spaceProvider = context.watch<SpaceProvider>();
     final profileProvider = context.watch<ProfileProvider>();
     final reservationProvider = context.watch<ReservationProvider>();
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
         backgroundColor: MainTheme.background(context),
         appBar: AppBar(
           backgroundColor: MainTheme.primary(context),
-          title: const Text("Información de la reserva", style: TextStyle(color: Colors.white, fontSize: 18)),
+          title: Text(l10n.reservationInfo, style: const TextStyle(color: Colors.white, fontSize: 18)),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
@@ -96,7 +98,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                       style: TextStyle(color: MainTheme.contrast(context), fontSize: 18.0),
                     ),
                     Text(
-                      "Aforo: ${spaceProvider.spaceSelected!.capacity} personas",
+                      "${l10n.capacityLabel}: ${spaceProvider.spaceSelected!.capacity} ${l10n.personsLabel}",
                       textAlign: TextAlign.start,
                       style: TextStyle(color: MainTheme.helper(context), fontSize: 15.0),
                     ),
@@ -105,7 +107,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Arrendatario: ",
+                            text: "${l10n.tenantLabel}: ",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: MainTheme.contrast(context),
@@ -126,7 +128,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      "Descripción:",
+                      "${l10n.descriptionLabel}:",
                       style: TextStyle(
                           color: MainTheme.contrast(context),
                           fontWeight: FontWeight.bold,
@@ -140,7 +142,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                 ),
                     const SizedBox(height: 20),
                     Text(
-                        "Inicia el: ${DateFormat('dd/MM/yyyy').format(reservation.startDate)} a las ${DateFormat('HH:mm').format(reservation.startDate)}",
+                        "${l10n.startsOn}: ${DateFormat('dd/MM/yyyy').format(reservation.startDate)} ${l10n.atTime} ${DateFormat('HH:mm').format(reservation.startDate)}",
                         style: TextStyle(
                             color: MainTheme.contrast(context),
                             fontSize: 15
@@ -148,7 +150,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                        "Termina el: ${DateFormat('dd/MM/yyyy').format(reservation.endDate)} a las ${DateFormat('HH:mm').format(reservation.endDate)}",
+                        "${l10n.endsOn}: ${DateFormat('dd/MM/yyyy').format(reservation.endDate)} ${l10n.atTime} ${DateFormat('HH:mm').format(reservation.endDate)}",
                         style: TextStyle(
                             color: MainTheme.contrast(context),
                             fontSize: 15
@@ -162,7 +164,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                           ? (reservation.isSubscribed ?? false)
                           ? Center(
                         child: Text(
-                          "Debido a que lo reservó un usuario premium, no se puede modificar",
+                          l10n.premiumCannotModify,
                           style: TextStyle(
                             color: MainTheme.primary(context),
                             fontSize: 15.0,
@@ -171,8 +173,8 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                         ),
                       )
                           : TextButton(
-                        child: const Text(
-                          "Modifica el horario de reserva",
+                        child: Text(
+                          l10n.modifySchedule,
                           textAlign: TextAlign.center,
                         ),
                         onPressed: () {
@@ -180,12 +182,12 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: const Text("Modificar horario de reserva"),
+                                title: Text(l10n.modifyScheduleTitle),
                                 content: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Text(
-                                      "Seleccione cuánto tiempo desea posponer:",
+                                    Text(
+                                      l10n.selectPostponeTime,
                                     ),
                                     TextField(
                                       keyboardType: TextInputType.number,
@@ -202,9 +204,9 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                                         }
                                       },
                                       decoration: InputDecoration(
-                                        labelText: "Minutos a posponer",
-                                        hintText: "Entre 10 y 60 minutos",
-                                        border: OutlineInputBorder(),
+                                        labelText: l10n.minutesToPostpone,
+                                        hintText: l10n.between10And60,
+                                        border: const OutlineInputBorder(),
                                       ),
                                     ),
                                   ],
@@ -214,7 +216,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: const Text("Cancelar"),
+                                    child: Text(l10n.cancel),
                                   ),
                                   TextButton(
                                     onPressed: () async {
@@ -223,7 +225,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                                       await reservationProvider.modifyReservation(reservation.id, reservation.userId, reservation.spaceId, newStartDate.toIso8601String(), newEndDate.toIso8601String());
                                       Navigator.pushReplacementNamed(context, '/calendar');
                                     },
-                                    child: const Text("Confirmar"),
+                                    child: Text(l10n.confirm),
                                   ),
                                 ],
                               );
@@ -237,7 +239,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                     const SizedBox(height: 20),
                     reservation.endDate.isAfter(DateTime.now()) ?
                     Text(
-                      "Comprobante de pago",
+                      l10n.paymentReceipt,
                       textAlign: TextAlign.start,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -266,26 +268,26 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
                           showDialog(
                             context: context,
                             builder: (_) => AlertDialog(
-                              title: const Text('Cancelar reserva'),
-                              content: const Text('¿Está seguro de que desea cancelar esta reserva?'),
+                              title: Text(l10n.cancelReservationTitle),
+                              content: Text(l10n.confirmCancelReservation),
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.pop(context),
-                                  child: const Text('No'),
+                                  child: Text(l10n.no),
                                 ),
                                 TextButton(
                                   onPressed: () async {
                                     await reservationProvider.deleteReservation(reservation.id);
                                     Navigator.pushReplacementNamed(context, '/calendar');
                                   },
-                                  child: const Text('Sí'),
+                                  child: Text(l10n.yes),
                                 ),
                               ],
                             ),
                           );
                         },
-                        child: const Text(
-                          "Cancelar reserva",
+                        child: Text(
+                          l10n.cancelReservation,
                           textAlign: TextAlign.center,
                         ),
                       ): const SizedBox.shrink()
@@ -298,7 +300,7 @@ class _ModifyReservationScreen extends State<ModifyReservationScreen> {
             padding: const EdgeInsets.only(top: 50.0),
             child: Center(
               child: Text(
-                "No hay espacio seleccionado",
+                l10n.noSpaceSelected,
                 style: TextStyle(
                     color: MainTheme.contrast(context),
                     fontSize: 20.0
