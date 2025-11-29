@@ -3,6 +3,7 @@ import 'package:alquilafacil/contact/presentation/widgets/notification_preview.d
 import 'package:alquilafacil/notification/presentation/providers/notification_provider.dart';
 import 'package:alquilafacil/public/presentation/widgets/screen_bottom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../public/ui/theme/main_theme.dart';
@@ -28,9 +29,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     final notificationProvider = context.watch<NotificationProvider>();
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notificaciones'),
+        title: Text(l10n.notifications),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -65,7 +67,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    "No tienes notificaciones",
+                    l10n.noNotifications,
                     style: TextStyle(color: MainTheme.contrast(context)),
                   ),
                 ],
