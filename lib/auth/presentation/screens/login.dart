@@ -3,6 +3,7 @@ import 'package:alquilafacil/public/presentation/widgets/custom_dialog.dart';
 import 'package:alquilafacil/spaces/presentation/screens/search_spaces.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../../../public/ui/theme/main_theme.dart';
 import '../widgets/auth_text_field.dart';
@@ -13,6 +14,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signInProvider = context.watch<SignInProvider>();
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: MainTheme.primary(context),
       body: Padding(
@@ -22,12 +24,12 @@ class Login extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text("INICIA SESIÓN",
-                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.white)),
+              Text(l10n.loginTitle,
+                  style: const TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.white)),
               const SizedBox(height: 10),
               AuthTextField(
-                textLabel: 'Correo electrónico',
-                textHint: 'Ingrese correo electrónico',
+                textLabel: l10n.email,
+                textHint: l10n.email,
                 isPassword: false,
                 param: signInProvider.email,
                 onChanged: (newEmail) {
@@ -39,8 +41,8 @@ class Login extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               AuthTextField(
-                textLabel: 'Contraseña',
-                textHint: 'Ingrese contraseña',
+                textLabel: l10n.password,
+                textHint: l10n.password,
                 isPassword: true,
                 param: signInProvider.password,
                 onChanged: (newPassword) {
@@ -59,13 +61,13 @@ class Login extends StatelessWidget {
                   try{
                     await signInProvider.signIn();
                     if(signInProvider.token.isNotEmpty){
-                      await showDialog(context: context, builder: (_) => const CustomDialog(title: "Inicio de sesión exitoso", route:"/search-space"));
+                      await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.reservationSuccess, route:"/search-space"));
                     }
                   } catch(_){
-                     await showDialog(context: context, builder: (_) => const CustomDialog(title: "Correo electrónico o contraseña incorrectos", route:"/login"));
+                     await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.invalidCredentials, route:"/login"));
                   }
                   },
-                  child: const Text("Iniciar sesión"),
+                  child: Text(l10n.loginButton),
                 ),
               ),
               const SizedBox(height: 20.0),
@@ -75,9 +77,9 @@ class Login extends StatelessWidget {
                 decoration: BoxDecoration(color: MainTheme.background(context)),
               ),
               const SizedBox(height: 20),
-              const Text(
-                  "¿Aún no tienes cuenta?",
-                style: TextStyle(
+              Text(
+                  l10n.noAccount,
+                style: const TextStyle(
                   fontSize: 10.0,
                   color: Colors.white
                 )
@@ -90,7 +92,7 @@ class Login extends StatelessWidget {
                       onPressed: (){
                         Navigator.pushReplacementNamed(context, "/sign-up");
                       },
-                      child: const Text("Regístrate")
+                      child: Text(l10n.registerButton)
                   ),
               ),
 

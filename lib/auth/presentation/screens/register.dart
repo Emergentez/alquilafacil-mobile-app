@@ -2,6 +2,7 @@ import 'package:alquilafacil/auth/presentation/providers/ConditionTermsProvider.
 import 'package:alquilafacil/auth/presentation/providers/SignUpProvider.dart';
 import 'package:alquilafacil/profile/presentation/providers/profile_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +38,7 @@ class _RegisterState extends State<Register> {
     final signUpProvider = context.watch<SignUpProvider>();
     final profileProvider = context.watch<ProfileProvider>();
     final conditionTermsProvider = context.watch<ConditionTermsProvider>();
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
         backgroundColor: MainTheme.primary(context),
         body: Padding(
@@ -45,15 +47,15 @@ class _RegisterState extends State<Register> {
               child: Center(
               child: Column(
                 children: <Widget>[
-                  const Text(
-                    "REGÍSTRATE",
+                  Text(
+                    l10n.registerTitle,
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: Colors.white),
+                        const TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: Colors.white),
                   ),
                   const SizedBox(height: 10),
                   AuthTextField(
-                    textLabel: "Nombre de usuario",
-                    textHint: "Ingrese su nombre de usuario",
+                    textLabel: l10n.username,
+                    textHint: l10n.enterUsername,
                     isPassword: false,
                     param: signUpProvider.username,
                     onChanged: (newValue) {
@@ -65,8 +67,8 @@ class _RegisterState extends State<Register> {
                   ),
                   const SizedBox(height: 10),
                   AuthTextField(
-                    textLabel: "Nombre",
-                    textHint: "Ingrese su nombre",
+                    textLabel: l10n.name,
+                    textHint: l10n.enterName,
                     isPassword: false,
                     param: signUpProvider.name,
                     onChanged: (newValue) {
@@ -82,8 +84,8 @@ class _RegisterState extends State<Register> {
                       Expanded(
                         flex: 1,
                         child: AuthTextField(
-                          textLabel: "Apellido paterno",
-                          textHint: "Ingrese su apellido paterno:",
+                          textLabel: l10n.fatherLastName,
+                          textHint: l10n.enterFatherLastName,
                           isPassword: false,
                           param: signUpProvider.fatherName,
                           onChanged: (newValue) {
@@ -98,8 +100,8 @@ class _RegisterState extends State<Register> {
                       Expanded(
                         flex: 1,
                         child: AuthTextField(
-                          textLabel: "Apellido materno",
-                          textHint: "Ingrese su apellido materno:",
+                          textLabel: l10n.motherLastName,
+                          textHint: l10n.enterMotherLastName,
                           isPassword: false,
                           param: signUpProvider.motherName,
                           onChanged: (newValue) {
@@ -118,8 +120,8 @@ class _RegisterState extends State<Register> {
                       Expanded(
                         flex: 1,
                         child: AuthTextField(
-                          textLabel: "Número de telefono",
-                          textHint: "Ingrese su número de telefono",
+                          textLabel: l10n.phoneNumber,
+                          textHint: l10n.enterPhoneNumber,
                           isPassword: false,
                           param: profileProvider.phoneNumber,
                           onChanged: (newValue) {
@@ -134,8 +136,8 @@ class _RegisterState extends State<Register> {
                       Expanded(
                         flex: 1,
                         child: AuthTextField(
-                          textLabel: "Número de documento",
-                          textHint: "Ingrese su número de documento",
+                          textLabel: l10n.documentNumber,
+                          textHint: l10n.enterDocumentNumber,
                           isPassword: false,
                           param: signUpProvider.documentNumber,
                           onChanged: (newValue) {
@@ -150,7 +152,7 @@ class _RegisterState extends State<Register> {
                   ),
                   const SizedBox(height: 10),
                   AuthTextField(
-                    textLabel: "Fecha de nacimiento",
+                    textLabel: l10n.birthDate,
                     textHint: "DD/MM/YY",
                     isPassword: false,
                     param: signUpProvider.dateOfBirth,
@@ -164,8 +166,8 @@ class _RegisterState extends State<Register> {
                   ),
                   const SizedBox(height: 10),
                   AuthTextField(
-                    textLabel: "Correo electrónico",
-                    textHint: "Ingrese su correo electrónico",
+                    textLabel: l10n.email,
+                    textHint: l10n.enterEmail,
                     isPassword: false,
                     param: signUpProvider.email,
                     onChanged: (newValue) {
@@ -181,8 +183,8 @@ class _RegisterState extends State<Register> {
                       Expanded(
                         flex: 1,
                         child: AuthTextField(
-                          textLabel: "Contraseña",
-                          textHint: "Ingrese su contraseña",
+                          textLabel: l10n.password,
+                          textHint: l10n.enterPassword,
                           isPassword: true,
                           param: signUpProvider.password,
                           onChanged: (newValue) {
@@ -197,8 +199,8 @@ class _RegisterState extends State<Register> {
                       Expanded(
                         flex: 1,
                         child: AuthTextField(
-                          textLabel: "Escriba nuevamente su contraseña",
-                          textHint: "Escriba nuevamente su contraseña",
+                          textLabel: l10n.reenterPassword,
+                          textHint: l10n.reenterPassword,
                           isPassword: true,
                           param: signUpProvider.confirmPassword,
                           onChanged: (newValue) {
@@ -235,14 +237,14 @@ class _RegisterState extends State<Register> {
                     controller: captchaController,
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 12),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: 'Escribe el captcha',
-                      hintStyle: TextStyle(
+                      hintText: l10n.writeCaptcha,
+                      hintStyle: const TextStyle(
                         color: Colors.grey,
                       ),
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                         borderSide: BorderSide.none,
                       ),
@@ -258,21 +260,21 @@ class _RegisterState extends State<Register> {
                         onPressed: () async {
                           try {
                             if (!conditionTermsProvider.isChecked) {
-                              await showDialog(context: context, builder: (_) => const CustomDialog(title: "Por favor, acepte nuestras políticas de uso", route:"/sign-up"));
+                              await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.acceptPolicies, route:"/sign-up"));
                             } else {
                                 await signUpProvider.signUp();
                                 if (signUpProvider.successfulMessage.isNotEmpty) {
-                                  await showDialog(context: context, builder: (_) => const CustomDialog(title: "Registro exitoso", route:"/login"));
+                                  await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.registrationSuccess, route:"/login"));
                                 } else{
-                                  await showDialog(context: context, builder: (_) => const CustomDialog(title: "Usuario ya existente o datos incorrectos", route:"/sign-up"));
+                                  await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.userExistsOrInvalid, route:"/sign-up"));
                                 }
                             }
                           } catch (e) {
                             Logger().e("Error during registration: $e");
-                            await showDialog(context: context, builder: (_) => const CustomDialog(title: "Ocurrió un error en el registro", route:"/sign-up"));
+                            await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.registrationError, route:"/sign-up"));
                           }
                         },
-                        child: const Text("Regístrate ahora"),
+                        child: Text(l10n.registerButton),
                       )),
                   const SizedBox(height: 10),
                   Container(
@@ -281,9 +283,9 @@ class _RegisterState extends State<Register> {
                     decoration: BoxDecoration(color: MainTheme.background(context)),
                   ),
                   const SizedBox(height: 25),
-                  const Text(
-                      "¿Ya tienes cuenta?",
-                      style: TextStyle(
+                  Text(
+                      l10n.hasAccount,
+                      style: const TextStyle(
                           fontSize: 10.0, color: Colors.white
                       )
                   ),
@@ -293,7 +295,7 @@ class _RegisterState extends State<Register> {
                     height: 50,
                     child: TextButton(
                       onPressed: ()=>{ Navigator.pushReplacementNamed(context, "/login")},
-                      child: const Text("Inicia sesión"),
+                      child: Text(l10n.loginButton),
                     )
                   ),
                 ],
