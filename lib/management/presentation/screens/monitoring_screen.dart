@@ -28,7 +28,7 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
     localId = reservation.spaceId;
 
     final String socketUrl =
-        'ws://alquilafacil-egde.onrender.com/api/v1/web-socket/ws/notifications/$localId';
+        'ws://application.canadacentral.cloudapp.azure.com:8081/api/v1/web-socket/ws/notifications/$localId';
 
     _channel = WebSocketChannel.connect(Uri.parse(socketUrl));
     _isConnected = true;

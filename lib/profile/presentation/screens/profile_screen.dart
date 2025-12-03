@@ -103,33 +103,36 @@ class ProfileScreen extends StatelessWidget {
                   Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
-                      onPressed: () => localeProvider.setSpanish(),
-                      child: Text(
-                        'ES',
-                        style: TextStyle(
-                          color: localeProvider.locale.languageCode == 'es'
-                            ? MainTheme.secondary(context)
-                            : MainTheme.contrast(context),
-                          fontWeight: localeProvider.locale.languageCode == 'es'
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        ),
+                    Text(
+                      'ES',
+                      style: TextStyle(
+                        color: MainTheme.contrast(context),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
                       ),
                     ),
-                    const Text('|'),
-                    TextButton(
-                      onPressed: () => localeProvider.setEnglish(),
-                      child: Text(
-                        'EN',
-                        style: TextStyle(
-                          color: localeProvider.locale.languageCode == 'en'
-                            ? MainTheme.secondary(context)
-                            : MainTheme.contrast(context),
-                          fontWeight: localeProvider.locale.languageCode == 'en'
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        ),
+                    const SizedBox(width: 8),
+                    Switch.adaptive(
+                      value: localeProvider.locale.languageCode == 'en',
+                      onChanged: (value) {
+                        if (value) {
+                          localeProvider.setEnglish();
+                        } else {
+                          localeProvider.setSpanish();
+                        }
+                      },
+                      activeColor: MainTheme.background(context),
+                      activeTrackColor: const Color(0xFFD13333),
+                      inactiveThumbColor: MainTheme.background(context),
+                      inactiveTrackColor: const Color(0xFFD13333),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'EN',
+                      style: TextStyle(
+                        color: MainTheme.contrast(context),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
                       ),
                     ),
                   ],
