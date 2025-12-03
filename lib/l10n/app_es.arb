@@ -217,5 +217,6 @@
   "tapDateForDetails": "Toca en una fecha para ver más detalles sobre la programación",
   "reservationEvent": "Reserva",
   "spaceReservation": "Reserva de tu espacio",
-  "premiumSpaceReservation": "Reserva de tu espacio por usuario premium"
+  "premiumSpaceReservation": "Reserva de tu espacio por usuario premium",
+  "loginSuccess": "Inicio de sesión exitoso"
 }
