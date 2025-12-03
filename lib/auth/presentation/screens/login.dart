@@ -61,7 +61,7 @@ class Login extends StatelessWidget {
                   try{
                     await signInProvider.signIn();
                     if(signInProvider.token.isNotEmpty){
-                      await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.reservationSuccess, route:"/search-space"));
+                      await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.loginSuccess, route:"/search-space"));
                     }
                   } catch(_){
                      await showDialog(context: context, builder: (_) => CustomDialog(title: l10n.invalidCredentials, route:"/login"));

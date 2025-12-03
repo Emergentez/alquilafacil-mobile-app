@@ -37,6 +37,7 @@
   "emailRequired": "Email is required",
   "passwordRequired": "Password is required",
   "invalidCredentials": "Invalid email or password",
+  "loginSuccess": "Login successful",
   "termsTitle": "Terms and conditions",
   "privacyTitle": "Privacy policy",
   "acceptTerms": "By registering, you accept the",
